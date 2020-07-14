@@ -10,9 +10,6 @@ const routes = require('./routes');
 
 //==================================== MIDDLEWARE ============================================
 
-//Mongoose Connection
-mongoose.connect('mongodb://localhost/receipt-search-api', { useNewUrlParser: true } );
-
 //CORS 
 const corsOptions = {
     origin: [`http://localhost:3000`],
