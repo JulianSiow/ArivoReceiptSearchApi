@@ -38,8 +38,21 @@ const addPayment = (req,res) => {
     });
 };
 
+//DELETE nuke
+//FIXME Delete before prod
+const yeet = (req, res) => {
+    db.Payment.deleteMany({}, (err, deletedPayments) => {
+        if (err) return res.status(500)
+        res.json({
+            status: 200,
+            message: 'YEET',
+            data: deletedPayments
+        })
+    })
+}
 
 module.exports = {
     all,
-    addPayment
+    addPayment,
+    yeet
 };

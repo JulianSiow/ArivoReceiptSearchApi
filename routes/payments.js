@@ -11,4 +11,7 @@ router.get('/all', ctrl.payments.all);
 //POST new payment
 router.post('/add', ctrl.payments.addPayment);
 
+//DELETE nuke
+router.delete('/yeet', ctrl.payments.yeet);
+
 module.exports = router;
