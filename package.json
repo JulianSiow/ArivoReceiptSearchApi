@@ -2,7 +2,7 @@
   "name": "receiptsearchbackend",
   "version": "1.0.0",
   "description": "reciept search api for Arivo interview task",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.24"
+    "mongoose": "^5.9.24",
+    "nodemon": "^2.0.4"
   }
 }

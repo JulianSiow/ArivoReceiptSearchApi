@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
@@ -28,5 +27,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.send('<h1>Arivo Receipt Search API Interview Task</h1>')
 })
+
+app.use('/api/v1/payments', routes.payments);
 
 app.listen(PORT, () => console.log(`Server connected at http://localhost:${PORT}`));

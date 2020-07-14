@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-class Gateway {
-    constructor(gate, direction) {
-        this.gate = gate,
-        this.direction = direction
-    }
-};
+// class Gateway {
+//     constructor(gate, direction) {
+//         this.gate = gate,
+//         this.direction = direction
+//     }
+// };
 
 const CountSchema = mongoose.Schema({
     count: Number,
@@ -14,7 +14,7 @@ const CountSchema = mongoose.Schema({
     name: String,
     zone: String,
     timestamp: String,
-    gateway: Gateway,
+    gateway: Object,
     User: String,
     type: String,
     id: String,
