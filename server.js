@@ -29,5 +29,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/payments', routes.payments);
+app.use('/api/v1/counts', routes.counts);
 
 app.listen(PORT, () => console.log(`Server connected at http://localhost:${PORT}`));

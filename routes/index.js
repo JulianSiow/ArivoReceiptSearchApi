@@ -1,3 +1,4 @@
 module.exports = {
-    payments: require('./payments')
+    payments: require('./payments'),
+    counts: require('./counts')
 }
