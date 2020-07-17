@@ -8,7 +8,7 @@ const ctrl = require('../controllers');
 router.get('/all', ctrl.counts.all);
 
 //POST create new count
-router.post('/new', ctrl.counts.addCount);
+router.post('/add', ctrl.counts.addCount);
 
 //DELETE nuke
 router.delete('/yeet', ctrl.counts.yeet);

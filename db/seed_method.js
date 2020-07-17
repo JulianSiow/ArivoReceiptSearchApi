@@ -1,21 +1,38 @@
 const lineReader = require('line-reader');
-const db = require('../models');
+const axios = require('axios');
 
-db.Count.remove({}, () => {
-    console.log('counts deleted, seeding...')
-})
+const deleteCounts = axios.delete('http://localhost:3000/api/v1/counts/yeet')
+const deletePayments = axios.delete('http://localhost:3000/api/v1/payments/yeet')
 
-lineReader.eachLine('./seed.js', (line) => {
-    entry = JSON.parse(line);
-    switch(entry[0]) {
-        case 'payment':
-            console.log('this is a payment')
-            //TODO upload payment
 
-            break;
-        case 'count':
-            console.log('this is a count')
-            //TODO upload count
-            break;
+//FIXME payments with receipts are not uploading
+axios.all([deleteCounts, deletePayments])
+.then(
+    console.log('payments and counts deleted'),
+    lineReader.eachLine('./seed.js', (line) => {
+        entry = JSON.parse(line);
+        switch(entry[0]) {
+            case 'payment':
+                console.log('uploading payment...')
+                axios.post('http://localhost:3000/api/v1/payments/add', entry[1])
+                .then((res) => {
+                    console.log(res);
+                }, (err) => {
+                    console.log(err)
+                });
+                break;
+            case 'count':
+                console.log('uploading count...')
+                axios.post('http://localhost:3000/api/v1/counts/add', entry[1])
+                .then((res) => {
+                    console.log(res);
+                }, (err) => {
+                    console.log(err)
+                });
+                break;
+        }
     }
-})
+)).catch(err => {
+    console.log(err);
+});
+
