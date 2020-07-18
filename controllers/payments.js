@@ -19,11 +19,16 @@ const all = (req, res) => {
 //GET find by params
 //Should maybe be a POST?
 //TODO find by certain params
-const getPaymentsByParams = (req, res) => { 
+const getPaymentsByParams = (req, res) => {
+    let cardNumRegex = '';
+    req.params.cardNum.split('').forEach(digit => {
+        digit += "\\s*";
+        cardNumRegex += digit;
+    })
     db.Payment.find({
         'om_payload.id': req.params.liscensePlate,
         timestamp: req.params.date,
-        "payment_payload.extra.card_number": {$regex: `.*${req.params.cardNum}.*`}
+        "payment_payload.extra.card_number": {$regex: `.*${cardNumRegex}.*`}
     }, (err, matchedPayments) => {
         if (err) return res.status(500);
         res.json({

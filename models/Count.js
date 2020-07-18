@@ -6,7 +6,7 @@ const CountSchema = mongoose.Schema({
     category: String,
     name: String,
     zone: String,
-    timestamp: String,
+    timestamp: Number,
     gateway: {
         gate: String,
         direction: String

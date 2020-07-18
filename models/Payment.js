@@ -10,7 +10,7 @@ const PaymentSchema = mongoose.Schema({
         payload_id: String,
         id: String
     },
-    timestamp: String,
+    timestamp: Number,
     type: String,
     gateway: {
         gate: String,
