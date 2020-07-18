@@ -42,14 +42,41 @@ const addCount = (req, res) => {
     });
 };
 
+//POST add many counts
+const addManyCounts = (req, res) => {
+    req.body.forEach(count => {
+        const newCount = {
+            count: count.count,
+            category: count.category,
+            name: count.name,
+            zone: count.zone,
+            timestamp: count.timestamp,
+            gateway: count.gateway,
+            user: count.user,
+            type: count.type,
+            id: count.id,
+            transaction_id: count.transaction_id
+        }
+        db.Count.create(newCount, (err, savedCount) => {
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            }
+            res.json({
+                status: 201,
+                data: savedCount
+            });
+        });
+    })
+}
+
 //DELETE nuke
-//FIXME Delete before prod
-const yeet = (req, res) => {
+const nuke = (req, res) => {
     db.Count.deleteMany({}, (err, deletedCounts) => {
         if (err) return res.status(500)
         res.json({
             status: 200,
-            message: 'YEET',
+            message: 'all counts deleted',
             data: deletedCounts
         });
     });
@@ -58,5 +85,6 @@ const yeet = (req, res) => {
 module.exports = {
     all,
     addCount,
-    yeet
+    addManyCounts,
+    nuke
 };

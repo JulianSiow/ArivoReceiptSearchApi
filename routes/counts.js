@@ -10,7 +10,10 @@ router.get('/all', ctrl.counts.all);
 //POST create new count
 router.post('/add', ctrl.counts.addCount);
 
+//POST create many counts
+router.post('/addMany', ctrl.counts.addManyCounts);
+
 //DELETE nuke
-router.delete('/yeet', ctrl.counts.yeet);
+router.delete('/nuke', ctrl.counts.nuke);
 
 module.exports = router;

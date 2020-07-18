@@ -14,7 +14,10 @@ router.get('/:liscensePlate/:date/:cardNum', ctrl.payments.getPaymentsByParams);
 //POST new payment
 router.post('/add', ctrl.payments.addPayment);
 
+//POST add multiple payments
+router.post('/addMany', ctrl.payments.addManyPayments);
+
 //DELETE nuke
-router.delete('/yeet', ctrl.payments.yeet);
+router.delete('/nuke', ctrl.payments.nuke);
 
 module.exports = router;

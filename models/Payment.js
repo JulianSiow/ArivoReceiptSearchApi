@@ -22,25 +22,7 @@ const PaymentSchema = mongoose.Schema({
         payment_id: String,
         amount: Number,
         payment_type: String,
-        extra: {
-            card_name: String,
-            date_day: String,
-            additional: String,
-            card_sequence_number: String,
-            receipt: String,
-            currency_code: String,
-            card_type: String,
-            amount: String,
-            vu: String,
-            time: String,
-            tid: String,
-            aid: String,
-            trace_number: String,
-            type: String,
-            card_number: String,
-            result_code: String,
-            turnover: String
-        }
+        extra: Object
     }
 })
 
