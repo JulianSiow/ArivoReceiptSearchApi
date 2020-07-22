@@ -25,16 +25,29 @@ const getPaymentsByParams = (req, res) => {
         digit += "\\s*";
         cardNumRegex += digit;
     })
+    
+    req.params.date
+    
     db.Payment.find({
         'om_payload.id': req.params.liscensePlate,
-        timestamp: req.params.date,
+        //FIXME needs to check only first 4 digits of timestamp
+        // "where": () => {
+        //     const paymentDate = new Date(timestamp).setHours(0, 0, 0, 0)*1000;
+        //     if (paymentDate === queriedDate) {
+        //         return true;
+        //     }
+        //     return false;
+        // },
+        timestamp: {$gt: req.params.date, $lt: req.params.followingDate},
         "payment_payload.extra.card_number": {$regex: `.*${cardNumRegex}.*`}
     }, (err, matchedPayments) => {
         if (err) return res.status(500);
         res.json({
             status: 200,
             count: matchedPayments.length,
-            data: matchedPayments
+            data: matchedPayments,
+            paymentDate: new Date(matchedPayments.timestamp).setHours(0, 0, 0, 0),
+            queriedDate: new Date(req.params.date).setHours(0, 0, 0, 0)
         })
     })
 }

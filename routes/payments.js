@@ -9,7 +9,7 @@ const ctrl = require('../controllers');
 router.get('/all', ctrl.payments.all);
 
 //GET payments by params
-router.get('/:liscensePlate/:date/:cardNum', ctrl.payments.getPaymentsByParams);
+router.get('/:liscensePlate/:date/:followingDate/:cardNum', ctrl.payments.getPaymentsByParams);
 
 //POST new payment
 router.post('/add', ctrl.payments.addPayment);
