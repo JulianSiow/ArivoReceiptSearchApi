@@ -39,38 +39,6 @@ const getPaymentsByParams = (req, res) => {
     })
 }
 
-//POST add payment
-const addPayment = (req,res) => {
-    const newPayment = {
-        request_amount: req.body.request_amount,
-        om_payload: req.body.om_payload,
-        timestamp: req.body.timestamp,
-        type: req.body.type,
-        gateway: req.body.gateway,
-        name: req.body.name,
-        receipt: req.body.receipt
-    }
-    if(req.body.payment_payload) {
-        const payment_payload = {
-            payment_id: req.body.payment_payload.payment_id,
-            amount: req.body.payment_payload.amount,
-            payment_type: req.body.payment_payload.payment_type,
-            extra: req.body.payment_payload.extra
-        }
-        newPayment.payment_payload = payment_payload;
-    }
-    db.Payment.create(newPayment, (err, savedPayment) => {
-        if (err) {
-            console.log(err);
-            return res.status(500);
-        }
-        res.json({
-            status: 201,
-            data: savedPayment
-        });
-    });
-};
-
 //POST add many payments
 const addManyPayments = (req, res) => {
     req.body.forEach (payment => {
@@ -121,7 +89,6 @@ const deleteAll = (req, res) => {
 module.exports = {
     all,
     getPaymentsByParams,
-    addPayment,
     addManyPayments,
     deleteAll
 };

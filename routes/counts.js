@@ -7,9 +7,6 @@ const ctrl = require('../controllers');
 //GET all counts
 router.get('/all', ctrl.counts.all);
 
-//POST create new count
-router.post('/add', ctrl.counts.addCount);
-
 //POST create many counts
 router.post('/addMany', ctrl.counts.addManyCounts);
 

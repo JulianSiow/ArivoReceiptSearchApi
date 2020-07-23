@@ -11,9 +11,6 @@ router.get('/all', ctrl.payments.all);
 //GET payments by params
 router.get('/:liscensePlate/:date/:followingDate/:cardNum', ctrl.payments.getPaymentsByParams);
 
-//POST new payment
-router.post('/add', ctrl.payments.addPayment);
-
 //POST add multiple payments
 router.post('/addMany', ctrl.payments.addManyPayments);
 
