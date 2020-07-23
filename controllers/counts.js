@@ -70,8 +70,8 @@ const addManyCounts = (req, res) => {
     })
 }
 
-//DELETE nuke
-const nuke = (req, res) => {
+//DELETE deleteAll
+const deleteAll = (req, res) => {
     db.Count.deleteMany({}, (err, deletedCounts) => {
         if (err) return res.status(500)
         res.json({
@@ -86,5 +86,5 @@ module.exports = {
     all,
     addCount,
     addManyCounts,
-    nuke
+    deleteAll
 };

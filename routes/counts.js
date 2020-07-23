@@ -13,7 +13,7 @@ router.post('/add', ctrl.counts.addCount);
 //POST create many counts
 router.post('/addMany', ctrl.counts.addManyCounts);
 
-//DELETE nuke
-router.delete('/nuke', ctrl.counts.nuke);
+//DELETE deleteAll
+router.delete('/deleteAll', ctrl.counts.deleteAll);
 
 module.exports = router;

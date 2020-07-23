@@ -1,12 +1,9 @@
 const lineReader = require('line-reader');
 const axios = require('axios');
 
-const deleteCounts = axios.delete('http://localhost:3000/api/v1/counts/nuke')
-const deletePayments = axios.delete('http://localhost:3000/api/v1/payments/nuke')
+const deleteCounts = axios.delete('http://localhost:3000/api/v1/counts/deleteAll')
+const deletePayments = axios.delete('http://localhost:3000/api/v1/payments/deleteAll')
 
-
-//FIXME payments with receipts are not uploading
-//Might also be worth writing a route to post multiple entries at once instead of sending 50 via seed file
 axios.all([deleteCounts, deletePayments])
 .then(
     console.log('payments and counts deleted'),

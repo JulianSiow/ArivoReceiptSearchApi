@@ -17,7 +17,7 @@ router.post('/add', ctrl.payments.addPayment);
 //POST add multiple payments
 router.post('/addMany', ctrl.payments.addManyPayments);
 
-//DELETE nuke
-router.delete('/nuke', ctrl.payments.nuke);
+//DELETE deleteAll
+router.delete('/deleteAll', ctrl.payments.deleteAll);
 
 module.exports = router;

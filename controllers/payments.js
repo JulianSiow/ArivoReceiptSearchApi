@@ -17,27 +17,14 @@ const all = (req, res) => {
 };
 
 //GET find by params
-//Should maybe be a POST?
-//TODO find by certain params
 const getPaymentsByParams = (req, res) => {
     let cardNumRegex = '';
     req.params.cardNum.split('').forEach(digit => {
         digit += "\\s*";
         cardNumRegex += digit;
     })
-    
-    req.params.date
-    
     db.Payment.find({
         'om_payload.id': req.params.liscensePlate,
-        //FIXME needs to check only first 4 digits of timestamp
-        // "where": () => {
-        //     const paymentDate = new Date(timestamp).setHours(0, 0, 0, 0)*1000;
-        //     if (paymentDate === queriedDate) {
-        //         return true;
-        //     }
-        //     return false;
-        // },
         timestamp: {$gt: req.params.date, $lt: req.params.followingDate},
         "payment_payload.extra.card_number": {$regex: `.*${cardNumRegex}.*`}
     }, (err, matchedPayments) => {
@@ -119,8 +106,8 @@ const addManyPayments = (req, res) => {
     })
 }
 
-//DELETE nuke
-const nuke = (req, res) => {
+//DELETE deleteAll
+const deleteAll = (req, res) => {
     db.Payment.deleteMany({}, (err, deletedPayments) => {
         if (err) return res.status(500)
         res.json({
@@ -136,5 +123,5 @@ module.exports = {
     getPaymentsByParams,
     addPayment,
     addManyPayments,
-    nuke
+    deleteAll
 };
