@@ -1,8 +1,10 @@
 const lineReader = require('line-reader');
 const axios = require('axios');
+require('dotenv').config()
+const PORT = process.env.PORT;
 
-const deleteCounts = axios.delete('http://localhost:3000/api/v1/counts/deleteAll')
-const deletePayments = axios.delete('http://localhost:3000/api/v1/payments/deleteAll')
+const deleteCounts = axios.delete(`http://localhost:${PORT}/api/v1/counts/deleteAll`)
+const deletePayments = axios.delete(`http://localhost:${PORT}/api/v1/payments/deleteAll`)
 
 axios.all([deleteCounts, deletePayments])
 .then(
@@ -21,13 +23,13 @@ axios.all([deleteCounts, deletePayments])
                 counts.push(entry[1])
                 break;
         }
-        axios.post('http://localhost:3000/api/v1/payments/addMany', payments)
+        axios.post(`http://localhost:${PORT}/api/v1/payments/addMany`, payments)
             .then((res) => {
                 console.log(res)
             }, (err) => {
                 console.log(err)
             });
-        axios.post('http://localhost:3000/api/v1/counts/addMany', counts)
+        axios.post(`http://localhost:${PORT}/api/v1/counts/addMany`, counts)
             .then((res) => {
                 console.log(res)
             }, (err) => {
