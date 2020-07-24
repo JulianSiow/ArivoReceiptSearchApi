@@ -11,7 +11,8 @@ This solution was built utilizing Node.js, Express, MongoDB and Mongoose.  For m
 To start this API on your machine, please ensure you have [Node.js](https://nodejs.org/en/) and [MongoDB](https://www.mongodb.com/) installed.  Once this repo is cloned on your machine, navigate to it using your choice of terminal and run: 
 ```npm i```
 This will install the required dependancies.  Before you can start the server, you will need to configure a .env file.  Create a new file called .env, and inside that file add these lines:
-```PORT=3000
+```
+PORT=3000
 MONGO_URI=mongodb://localhost/receipt-search-api
 ```
 Then, in two seperate terminals, run:
